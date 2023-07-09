@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Results</title>
+</head>
+<body bgcolor="#00ffff">
+<div align="center">
+<b>
+    <h3>BMI RESULTS</h3><br>
+   <b> HEALTHY BMI RANGE SHOULD BE IN BETWEEN 18.5 to 24.5</b> <br><br>
+    BMI_INDEX  :  {{ result }} <br><br>
+    STATUS  :  {{ cate }}<br><br>
+    <img src="{% static  img %}"><br>
+    <h3><b>{{ sug }}</b></h3>
+
+</b>
+</div>
+</body>
+</html>
