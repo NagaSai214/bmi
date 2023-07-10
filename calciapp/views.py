@@ -1,16 +1,18 @@
 from django.shortcuts import render
-from calciapp.models import Bmi_Users
+from calciapp.models import Bmi_Users      #imported bmi_users from models.py
 
 def calc(request):
-        return  render(request, "index.html")
+        return  render(request, "index.html")        # render is used to redirect to another page.
 
 def calculations(request):
-        na= request.GET["name"]
+        na= request.GET["name"]                     # request.get is used to fetch the data from html page.
         ag= request.GET["age"]
         ht= float(request.GET["height"])
         wt= float(request.GET["weight"])
         ph= request.GET["num"]
-        bmi = (wt*100*100)/(ht*ht)
+        bmi = (wt*100*100)/(ht*ht)                    # Formula is used to calculate the bmi_index.
+
+        # the below lists are used to specify according to weights category.
 
         weights_list = ["OVERWEIGHT", "UNDERWEIGHT", "NORMAL", "OBESITY"]
 
@@ -47,13 +49,16 @@ def calculations(request):
                 su = suggestions[3]
 
 
+        # storing the obtained results from the above code in a dictionary
 
         dict_store={"result":bmi, "cate":res, "img":im,"sug":su}
 
+        # below code is used to insert values into bmi_users table
         Bmi_Users.objects.all()
         b=Bmi_Users(name=na, age=ag, height=ht, weight=wt, ph_no=ph, bmi_index=bmi, status=res)
         b.save()
 
+        # render is used to redirect to another page along with dictionary.
         return render(request, 'calculation.html', dict_store)
 
 
